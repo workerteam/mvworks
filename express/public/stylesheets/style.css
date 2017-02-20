@@ -1,0 +1,15 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+
+.header{width:980px;height:60px;background:skyblue;color:black;text-align: center;font-size: 40px;line-height:50px;}
+img{margin-left: 230px;}
+form{margin-left: 230px;}
+form .whyme{width: 460px;height: 40px;margin-top: 50px;border: 1px solid black;border-radius: 10px;margin-left: 20px;}
+form #btnme{width: 240px;height: 40px;background: red;color: white;border-radius:20px;margin-top: 50px;margin-left:150px;border: 3px solid black; font-size: 22px;}

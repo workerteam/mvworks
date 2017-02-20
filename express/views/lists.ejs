@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript" src='/javascripts/jquery-1.12.4.min.js'></script>
+  </head>
+  <body>
+
+  <form style="margin: 0 0 50px 20px;" method="get" action="./lists">
+  	<label><button name="rating.average">评分最高排序</button></label><br>
+  	<label>
+  		<input type="text" name="title" placeholder="请输入电影名"><br>
+  		<input type="text" name="year" placeholder="请输入电影放映时间"><br>
+  		<input type="submit" value="查询">
+  	</label>	
+  </form>
+    
+    <table>
+    	<tr>
+    		<th>序号</th>
+    		<th>电影名</th>
+    		<th>电影图片</th>
+    		<th>类型</th>
+    		<th>放映时间</th>
+    		<th>评分</th>
+    	</tr>
+
+    	<% res.forEach(function(item, index) { %>
+    	<tr>
+    		<td><%= (index + 1) + (pageNu - 1) * pageSize %></td>
+    		<td><%= item.title %></td>
+    		<td><a href=<%= item.images.large %>><img src=<%= item.images.small %> /></a></td>
+    		<td><%= item.genres %></td>
+    		<td><%= item.year %></td>
+    		<td><%= item.rating.average %></td>
+    	</tr>
+    	<% }) %>
+
+    	<tr>
+    		<td colspan="6" style="text-align: right;">
+    			<a href="./list?pageNu=1">首页</a>
+    			<a href="./list?pageNu=<%= pageNu > 1 ? pageNu - 1 : 1 %>">上一页</a>
+    			<a href="./list?pageNu=<%= pageNu < totalPages ? parseInt(pageNu) + 1 : totalPages %>">下一页</a>
+    			<a href="./list?pageNu=<%= totalPages %>">尾页</a>
+    			<%= pageNu %> / <%= totalPages %> 共 <%= count %> 条记录
+    		</td>
+    	</tr>
+    </table>
+
+    <script type="text/javascript">
+    	/*$(function(){
+    		$('#selectName input[type=button]').click(function(){
+    			console.log("asfas");
+    		});
+    	});*/
+    </script>
+  </body>
+</html>

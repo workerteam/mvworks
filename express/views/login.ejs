@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <%- include header %>
+  <img src="/img/yyf.jpg">
+   <form action="./users/login" method="post" style="width: 524px;height: 373px;border: 2px solid black;"">
+   
+      <label>
+      邮箱:<input type="text" name="email" placeholder="请输入邮箱" class="whyme"><br>
+      </label>
+      <label>
+      密码:<input type="password" name="password" class="whyme"><br>
+      </label>
+      <label>
+      <input type="submit" value="提交" name="submit" id="btnme">
+      </label>
+   </form>
+  </body>
+</html>
