@@ -82,8 +82,62 @@ router.get('/detail',function(req,res){
 			}
 		});
 
+	}else{
+		var pageNo = req.query.pageNo,
+			pageNo = pageNo?pageNo:1,
+			pageSize = 5,
+			count = 0,
+			totalPages = 0;
+		var queryData = function(db,callback){
+			var conn = db.collection('comment');
+
+			//并行无关联
+			async.parallel([
+				function(callback){
+					conn.find({}).toArray(function(err,results){
+						if(err){
+							return;
+						}else{
+							totalPages = Math.ceil(results.length/pageSize);
+							count = results.length;
+							callback(null,'');
+						}
+					});
+				},
+				function(callback){
+					conn.find({}).sort({_id:-1}).skip((pageNo-1)*pageSize).limit(pageSize).toArray(function(err,results){
+						if(err){
+								return;
+						}
+						callback(null,results);
+					});
+				}
+			],function(err,results){
+				callback(results[1]);
+			});		
+		}
+		MongoClient.connect(DB_CONN_STR,function(err,db){
+			if(err){
+				return;
+			}else{
+				queryData(db,function(results){
+					// console.log(results);
+					res.render('detail',{
+						title: 'Express',
+						htmlView:'<b>htmlView</b>',
+						email:req.session.email,
+						res:results,
+						pageNo:pageNo,
+						count:count,
+						totalPages:totalPages});
+					// res.render('comment',{res:results});
+					db.close();
+				});
+			}
+		});
+
 	}
-})
+});
 router.get('/lists', function(req, res){
 	var pageNu = req.query.pageNu,
 		pageNu = pageNu ? pageNu : 1,
