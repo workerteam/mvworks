@@ -1,0 +1,20 @@
+{
+	"index.html": {
+		"resources": [
+			"images/school1.jpg",
+			"images/future.png",
+			"images/can.png",
+			"images/place.png",
+			"images/know.png",
+			"images/star.png",
+			"images/school.jpg",
+			"css/index.css",
+			"images/sign.png",
+			"font/iconfont.woff",
+			"images/city.png",
+			"images/world.png",
+			"images/move.gif",
+			"js/index.js"
+		]
+	}
+}
